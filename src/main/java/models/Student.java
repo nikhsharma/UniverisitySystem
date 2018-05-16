@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
@@ -10,12 +12,14 @@ public class Student {
     private int age;
     private int enrolmentNumber;
     private Course course;
+    private Set<Lesson> lessons;
 
     public Student(String name, int age, int enrolmentNumber, Course course) {
         this.name = name;
         this.age = age;
         this.enrolmentNumber = enrolmentNumber;
         this.course = course;
+        this.lessons = new HashSet<Lesson>();
     }
 
     public Student() {
@@ -67,5 +71,21 @@ public class Student {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "student_lesson",
+            joinColumns = {@JoinColumn(name = "student_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "lesson_id", nullable = false, updatable = false)})
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public void addLesson(Lesson lesson){
+        this.lessons.add(lesson);
     }
 }
