@@ -1,5 +1,6 @@
 import db.DBCourse;
 import db.DBHelper;
+import db.DBLesson;
 import models.Course;
 import models.CourseLevel;
 import models.Lesson;
@@ -48,6 +49,7 @@ public class Runner {
 
         List<Student> studentsOnCourse3 = DBCourse.getStudentsOnCourse(course3);
         List<Lesson> lessonsForCourse1 = DBCourse.getLessonsForCourse(course1);
+        List<Student> studentsInLesson1 = DBLesson.getStudentsInLesson(lesson1);
 
     }
 }
