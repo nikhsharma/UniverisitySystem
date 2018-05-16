@@ -1,3 +1,4 @@
+import db.DBCourse;
 import db.DBHelper;
 import models.Course;
 import models.CourseLevel;
@@ -44,6 +45,9 @@ public class Runner {
         List<Student> allStudents = DBHelper.getAll(Student.class);
         List<Course> allCourses = DBHelper.getAll(Course.class);
         List<Lesson> allLessons = DBHelper.getAll(Lesson.class);
+
+        List<Student> studentsOnCourse3 = DBCourse.getStudentsOnCourse(course3);
+        List<Lesson> lessonsForCourse1 = DBCourse.getLessonsForCourse(course1);
 
     }
 }
