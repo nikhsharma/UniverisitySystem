@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import javax.swing.*;
+import java.util.GregorianCalendar;
 import java.util.Set;
 
 
@@ -12,10 +14,14 @@ public class Course {
     private CourseLevel level;
     private Set<Student> students;
     private Set<Lesson> lessons;
+    private GregorianCalendar startDate;
+    private GregorianCalendar endDate;
 
-    public Course(String title, CourseLevel level) {
+    public Course(String title, CourseLevel level, GregorianCalendar startDate, GregorianCalendar endDate) {
         this.title = title;
         this.level = level;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Course() {
@@ -66,5 +72,23 @@ public class Course {
 
     public void setLessons(Set<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    @Column(name = "start_date")
+    public GregorianCalendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(GregorianCalendar startDate) {
+        this.startDate = startDate;
+    }
+
+    @Column(name = "end_date")
+    public GregorianCalendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(GregorianCalendar endDate) {
+        this.endDate = endDate;
     }
 }

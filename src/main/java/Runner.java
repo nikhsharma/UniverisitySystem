@@ -1,20 +1,22 @@
 import db.DBCourse;
 import db.DBHelper;
 import db.DBLesson;
+import db.DBStudent;
 import models.Course;
 import models.CourseLevel;
 import models.Lesson;
 import models.Student;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Runner {
 
     public static void main(String[] args) {
 
-        Course course1 = new Course("Title 1", CourseLevel.BEng);
-        Course course2 = new Course("Title 2", CourseLevel.BSc);
-        Course course3 = new Course("Title 3", CourseLevel.MA);
+        Course course1 = new Course("Title 1", CourseLevel.BEng, new GregorianCalendar(2018, 5, 16), new GregorianCalendar(2019, 5, 16));
+        Course course2 = new Course("Title 2", CourseLevel.BSc,  new GregorianCalendar(2018, 7, 10), new GregorianCalendar(2019, 7, 20));
+        Course course3 = new Course("Title 3", CourseLevel.MA,  new GregorianCalendar(2018, 5, 29), new GregorianCalendar(2019, 9, 10));
 
         DBHelper.save(course1);
         DBHelper.save(course2);
@@ -38,10 +40,12 @@ public class Runner {
         DBHelper.save(lesson2);
         DBHelper.save(lesson3);
 
+//        DBHelper.addStudentToLesson(student1, lesson1);
+//        DBHelper.addStudentToLesson(student2, lesson1);
+//        DBHelper.addStudentToLesson(student3, lesson2);
+//        DBHelper.addStudentToLesson(student3, lesson1);
         DBHelper.addStudentToLesson(student1, lesson1);
-        DBHelper.addStudentToLesson(student2, lesson1);
-        DBHelper.addStudentToLesson(student3, lesson2);
-        DBHelper.addStudentToLesson(student3, lesson1);
+        DBHelper.addStudentToLesson(student1, lesson3);
 
         List<Student> allStudents = DBHelper.getAll(Student.class);
         List<Course> allCourses = DBHelper.getAll(Course.class);
@@ -50,6 +54,7 @@ public class Runner {
         List<Student> studentsOnCourse3 = DBCourse.getStudentsOnCourse(course3);
         List<Lesson> lessonsForCourse1 = DBCourse.getLessonsForCourse(course1);
         List<Student> studentsInLesson1 = DBLesson.getStudentsInLesson(lesson1);
+        List<Lesson> lessonsFromStudent1 = DBStudent.getLessonsFromStudent(student1);
 
     }
 }

@@ -1,5 +1,6 @@
 package db;
 
+import models.Course;
 import models.Lesson;
 import models.Student;
 import org.hibernate.Criteria;
@@ -61,8 +62,15 @@ public class DBHelper {
     }
 
     public static void addStudentToLesson(Student student, Lesson lesson){
-        lesson.addStudent(student);
-        student.addLesson(lesson);
-        save(lesson);
+        Course c = student.getCourse();
+        List<Lesson> lessons = DBCourse.getLessonsForCourse(c);
+
+        for (Lesson l : lessons) {
+            if (l.getId() == lesson.getId()){
+                lesson.addStudent(student);
+                student.addLesson(lesson);
+                save(lesson);
+            }
+        }
     }
 }
