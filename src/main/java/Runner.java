@@ -36,6 +36,11 @@ public class Runner {
         DBHelper.save(lesson2);
         DBHelper.save(lesson3);
 
+        DBHelper.addStudentToLesson(student1, lesson1);
+        DBHelper.addStudentToLesson(student2, lesson1);
+        DBHelper.addStudentToLesson(student3, lesson2);
+        DBHelper.addStudentToLesson(student3, lesson1);
+
         List<Student> allStudents = DBHelper.getAll(Student.class);
         List<Course> allCourses = DBHelper.getAll(Course.class);
         List<Lesson> allLessons = DBHelper.getAll(Lesson.class);
