@@ -13,5 +13,6 @@
         <property name="show_sql">true</property>
         <mapping class="models.Course" />
         <mapping class="models.Student" />
+        <mapping class="models.Lesson" />
     </session-factory>
 </hibernate-configuration>
